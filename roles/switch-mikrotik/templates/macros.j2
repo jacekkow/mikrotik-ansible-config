@@ -1,0 +1,5 @@
+{% macro write_list(name, values) %}
+{%- if values %}
+{{ name }}={{ values | join(',') | mikrotik_escape }}
+{%- endif %}
+{%- endmacro %} 

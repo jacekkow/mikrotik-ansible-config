@@ -1,0 +1,43 @@
+switch_bonds:
+  bond0:
+    interfaces:
+      - sfp-sfpplus1
+      - sfp-sfpplus2
+  bond1:
+    interfaces:
+      - sfp-sfpplus3
+      - sfp-sfpplus4
+
+switch_ports:
+  bond0:
+    name: port-bond0
+    edge: 'no'
+  bond1:
+    name: port-bond1
+    edge: 'no'
+  ether1:
+    name: management
+    pvid: 10
+  sfp-sfpplus5:
+    name: port-sfpplus5
+    pvid: 100
+  sfp-sfpplus6:
+    name: port-sfpplus6
+    pvid: 200
+
+switch_port_speeds:
+  sfp-sfpplus5: 100 # Mbps
+  sfp-sfpplus6: [100, 20] # up/down Mbps
+
+switch_vlans:
+  10:
+    name: management
+    untagged: [ether1]
+  100:
+    name: customer1
+    tagged: [bond0, bond1]
+    untagged: [sfp-sfpplus5]
+  200:
+    name: customer2
+    tagged: [bond0, bond1]
+    untagged: [sfp-sfpplus6]

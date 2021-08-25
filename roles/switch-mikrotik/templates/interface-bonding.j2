@@ -1,0 +1,6 @@
+{% from "macros.j2" import write_list %}
+{% set prefix = '/interface bonding add' %}
+
+{% for name, bond in switch_bonds | dictsort %}
+{{ prefix }} mode=802.3ad name={{ name }} {{ write_list('slaves', bond.interfaces) }} transmit-hash-policy=layer-2-and-3
+{% endfor %}

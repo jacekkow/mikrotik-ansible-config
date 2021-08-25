@@ -1,0 +1,6 @@
+{% from "macros.j2" import write_list %}
+{% set prefix = '/interface bridge vlan add bridge=' + switch_bridge_name %}
+
+{% for id, data in switch_vlans | dictsort %}
+{{ prefix }} comment={{ data.name | mikrotik_escape }} {{ write_list('tagged', data.ports_tagged | default([])) }} {{ write_list('untagged', data.ports_untagged | default([])) }} vlan-ids={{ id }}
+{% endfor %}

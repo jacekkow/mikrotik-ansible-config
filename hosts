@@ -1,0 +1,5 @@
+[switches_mikrotik:children]
+switches_mikrotik_crs326_24s_2q_rm
+
+[switches_mikrotik_crs326_24s_2q_rm]
+test-switch ansible_host=192.168.88.1

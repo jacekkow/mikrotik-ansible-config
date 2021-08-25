@@ -1,0 +1,24 @@
+switch_autoconf:
+  - command: /interface bonding
+    export: /interface bonding export terse
+    template: interface-bonding.j2
+    unique_attribute: name
+  - command: /interface bridge port
+    export: /interface bridge port export terse
+    template: interface-bridge-port.j2
+    unique_attribute: interface
+  - command: /interface bridge vlan
+    export: /interface bridge vlan export terse
+    template: interface-bridge-vlan.j2
+    unique_attribute: vlan-ids
+  - command: /interface ethernet switch port
+    export: /interface ethernet switch port export terse
+    template: interface-ethernet-switch-port.j2
+    unique_attribute: _
+
+switch_portids: {}
+
+switch_bridge_name: bridge
+switch_ports: {}
+switch_vlans: {}
+switch_port_speeds: {}

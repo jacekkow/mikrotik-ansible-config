@@ -1,0 +1,12 @@
+{% set prefix = '/interface ethernet switch port' %}
+
+{% for port, speed in switch_port_speeds | dictsort %}
+{% if speed is iterable and speed is not string %}
+{% set speed_uplink = speed[0] %}
+{% set speed_downlink = speed[1] %}
+{% else %}
+{% set speed_uplink = speed %}
+{% set speed_downlink = speed %}
+{% endif %}
+{{ prefix }} set {{ switch_portids[port] }} egress-rate={{ speed_uplink | int }}.0Mbps ingress-rate={{ speed_downlink | int }}.0Mbps
+{% endfor %}
